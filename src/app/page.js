@@ -329,46 +329,46 @@ export default function App() {
         <div className="absolute top-0 -left-12 w-[600px] h-[600px] bg-rose-200/50 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
         <div className="absolute bottom-0 -right-12 w-[600px] h-[600px] bg-pink-150/40 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
 
-        <div className="w-full max-w-md glassmorphism rounded-3xl shadow-2xl shadow-rose-200/30 p-8 flex flex-col gap-8 relative z-10 border border-white/40 transition-all duration-300 hover:shadow-rose-200/40">
+        <div className="w-full max-w-lg glassmorphism rounded-3xl shadow-2xl shadow-rose-200/30 p-10 flex flex-col gap-8 relative z-10 border border-white/40 transition-all duration-300 hover:shadow-rose-200/40">
           <div className="flex flex-col items-center gap-3.5 text-center">
             <div className="bg-gradient-to-br from-rose-500 to-pink-500 text-white p-4 rounded-3xl shadow-lg shadow-rose-200/60 border border-rose-400/20 animate-float">
               <StethoscopeIcon />
             </div>
-            <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-rose-900 via-rose-800 to-pink-700 bg-clip-text text-transparent mt-2">
+            <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-rose-900 via-rose-800 to-pink-700 bg-clip-text text-transparent mt-2">
               HOSxP EMR Portal
             </h1>
-            <p className="text-xs text-pink-600/80 font-bold tracking-wide uppercase">
+            <p className="text-sm text-pink-600/80 font-bold tracking-wide uppercase">
               ระบบสืบค้นเวชระเบียนผู้ป่วยอิเล็กทรอนิกส์ (EMR)
             </p>
           </div>
 
           <form onSubmit={handleLoginSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-rose-800/80 tracking-wider uppercase">Username</label>
+              <label className="text-sm font-bold text-rose-800/80 tracking-wider uppercase">Username</label>
               <input
                 type="text"
                 placeholder="ระบุรหัสเข้าใช้งาน เช่น demo"
                 required
-                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-sm text-rose-955 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
+                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-base text-rose-955 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
                 value={loginForm.username}
                 onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-rose-800/80 tracking-wider uppercase">Password</label>
+              <label className="text-sm font-bold text-rose-800/80 tracking-wider uppercase">Password</label>
               <input
                 type="password"
                 placeholder="ระบุรหัสผ่าน"
                 required
-                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-sm text-rose-900 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
+                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-base text-rose-900 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
                 value={loginForm.password}
                 onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
               />
             </div>
 
             {loginError && (
-              <div className="bg-rose-100/80 border border-rose-200 text-rose-600 text-xs p-3 rounded-lg text-center font-bold">
+              <div className="bg-rose-100/80 border border-rose-200 text-rose-600 text-sm p-3 rounded-lg text-center font-bold">
                 ⚠️ {loginError}
               </div>
             )}
@@ -376,7 +376,7 @@ export default function App() {
             <button
               type="submit"
               disabled={loginLoading}
-              className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-rose-200/80 hover:shadow-xl hover:shadow-rose-300/80 disabled:opacity-50 transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white py-3.5 rounded-xl text-base font-bold shadow-lg shadow-rose-200/80 hover:shadow-xl hover:shadow-rose-300/80 disabled:opacity-50 transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               {loginLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -388,14 +388,14 @@ export default function App() {
 
           {/* Quick Demo Mode Options */}
           <div className="border-t border-rose-100/80 pt-6 flex flex-col gap-3.5">
-            <span className="text-[11px] text-center text-pink-600/60 font-bold uppercase tracking-wider">ทดลองใช้งานโปรแกรมด้วยข้อมูลจำลอง (Demo Mode)</span>
+            <span className="text-xs text-center text-pink-600/60 font-bold uppercase tracking-wider">ทดลองใช้งานโปรแกรมด้วยข้อมูลจำลอง (Demo Mode)</span>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => {
                   setLoginForm({ username: 'demo', password: 'password' });
                   setLoginError('');
                 }}
-                className="bg-rose-50/40 hover:bg-rose-100/50 border border-rose-100/50 text-rose-800 text-xs font-extrabold py-3 px-4 rounded-xl text-center transition hover:scale-[1.02] shadow-sm cursor-pointer"
+                className="bg-rose-50/40 hover:bg-rose-100/50 border border-rose-100/50 text-rose-800 text-sm font-extrabold py-3 px-4 rounded-xl text-center transition hover:scale-[1.02] shadow-sm cursor-pointer"
               >
                 ผู้ใช้ทดสอบ: demo
               </button>
@@ -409,7 +409,7 @@ export default function App() {
                 ผู้ใช้จำลอง: admin
               </button>
             </div>
-            <p className="text-[10px] text-center text-rose-600 leading-normal font-semibold">
+            <p className="text-xs text-center text-rose-600 leading-normal font-semibold">
               *ระบุชื่อผู้ใช้และรหัสผ่านของท่าน หรือกดเลือกปุ่มทดลองใช้งานเพื่อทดสอบระบบหน้าบ้าน
             </p>
           </div>
@@ -431,24 +431,32 @@ export default function App() {
               <StethoscopeIcon />
             </div>
             <div>
-              <h1 className="text-sm font-extrabold text-white tracking-wide leading-none">HOSxP EMR</h1>
-              <p className="text-[9px] text-rose-200 font-bold tracking-wider uppercase mt-0.5">Records Portal</p>
+              <h1 className="text-lg font-extrabold text-white tracking-wide leading-none">HOSxP EMR</h1>
+              <p className="text-sm text-rose-200 font-bold tracking-wider uppercase mt-0.5">Records Portal</p>
             </div>
           </div>
 
           {/* Search Input */}
-          <div className="relative flex-1 max-w-xs sm:max-w-sm">
-            <input
-              type="text"
-              placeholder="ค้นหา HN (เช่น 1234567)"
-              className="w-full bg-white border border-rose-200/50 rounded-xl pl-10 pr-3 py-2 text-xs text-zinc-800 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-400 transition duration-200"
-              value={searchHn}
-              onChange={(e) => setSearchHn(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearchPatient()}
-            />
-            <div className="absolute left-3.5 top-2.5 text-pink-450">
-              <SearchIcon />
+          <div className="flex items-center gap-2 flex-1 max-w-md">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                placeholder="ค้นหา HN (เช่น 1234567)"
+                className="w-full bg-white border border-rose-200/50 rounded-xl pl-11 pr-3 py-2 text-base text-zinc-800 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-400 transition duration-200 font-medium"
+                value={searchHn}
+                onChange={(e) => setSearchHn(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearchPatient()}
+              />
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-450 flex items-center">
+                <SearchIcon />
+              </div>
             </div>
+            <button
+              onClick={() => handleSearchPatient()}
+              className="bg-white hover:bg-rose-50/50 text-pink-600 border border-transparent hover:border-rose-100 text-base py-2 px-5 rounded-xl font-extrabold shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center shrink-0"
+            >
+              ค้นหา
+            </button>
           </div>
 
 
@@ -458,8 +466,8 @@ export default function App() {
         <div className="flex items-center gap-4 shrink-0">
           <div className="hidden lg:flex items-center gap-3 text-right">
             <div>
-              <p className="text-xs font-bold text-white">{session.user.name}</p>
-              <p className="text-[10px] text-rose-200 font-bold">
+              <p className="text-base font-bold text-white">{session.user.name}</p>
+              <p className="text-sm text-rose-200 font-bold">
                 {session.user.department} ({session.user.group})
               </p>
             </div>
@@ -469,7 +477,7 @@ export default function App() {
           </div>
 
           {(session.isMock || patientData?.isMock || visitDetails?.isMock) && (
-            <div className="bg-white/20 border border-white/30 text-white text-[9px] font-extrabold py-1 px-2.5 rounded-full tracking-wide">
+            <div className="bg-white/20 border border-white/30 text-white text-xs font-extrabold py-1 px-2.5 rounded-full tracking-wide">
               DEMO
             </div>
           )}
@@ -487,7 +495,7 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col md:flex-row p-6 gap-6 overflow-hidden">
         {searchError && (
-          <div className="w-full bg-rose-100 border border-rose-200 text-pink-600 text-sm p-4 rounded-xl text-center self-start shadow-sm font-semibold">
+          <div className="w-full bg-rose-100 border border-rose-200 text-pink-600 text-base p-4 rounded-xl text-center self-start shadow-sm font-semibold">
             ⚠️ {searchError} (กรุณาลองรหัส HN 1234567 หรือ 1020304)
           </div>
         )}
@@ -498,8 +506,8 @@ export default function App() {
               <SearchIcon />
             </div>
             <div>
-              <h3 className="text-md font-bold text-rose-900">ยังไม่ได้ระบุข้อมูลผู้ป่วย</h3>
-              <p className="text-sm text-pink-600/60 mt-1 max-w-sm font-medium">
+              <h3 className="text-lg font-bold text-rose-900">ยังไม่ได้ระบุข้อมูลผู้ป่วย</h3>
+              <p className="text-base text-pink-600/60 mt-1 max-w-sm font-medium">
                 กรุณาระบุรหัส HN ที่ต้องการค้นหา หรือใช้ปุ่มกดเลือกสมชายหรือวัลลภาที่ด้านบนเพื่อดูตัวอย่างประวัติการรักษาพยาบาล
               </p>
             </div>
@@ -516,13 +524,13 @@ export default function App() {
                   {patientData.patient.sex === '1' ? '👨' : '👩'}
                 </div>
                 <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
-                  <h2 className="text-xl font-bold text-rose-955 flex items-center gap-2.5">
+                  <h2 className="text-3xl font-bold text-rose-955 flex items-center gap-2.5">
                     {patientData.patient.pname}{patientData.patient.fname} {patientData.patient.lname}
-                    <span className="text-xs bg-rose-500/10 border border-rose-200 text-pink-600 font-extrabold px-2 py-0.5 rounded-md">
+                    <span className="text-base bg-rose-500/10 border border-rose-200 text-pink-600 font-extrabold px-2.5 py-0.5 rounded-md">
                       HN: {patientData.patient.hn}
                     </span>
                   </h2>
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-rose-800/80 mt-1 justify-center md:justify-start font-medium">
+                  <div className="flex flex-wrap items-center gap-4 text-base text-rose-800/90 mt-1 justify-center md:justify-start font-medium">
                     <span>เพศ: <strong className="text-rose-900">{getSexLabel(patientData.patient.sex)}</strong></span>
                     <span>อายุ: <strong className="text-rose-900">{patientData.patient.age} ปี</strong></span>
                     <span>วันเกิด: <strong className="text-rose-900">{formatDate(patientData.patient.birthday)}</strong></span>
@@ -538,10 +546,10 @@ export default function App() {
                   <div className="bg-emerald-50/60 border border-emerald-200 p-4.5 rounded-2xl flex items-start gap-3 md:max-w-xs w-full md:w-auto self-stretch md:self-auto shadow-sm ring-1 ring-emerald-250/20">
                     <span className="text-emerald-600 text-lg mt-0.5">🩺</span>
                     <div>
-                      <h4 className="text-emerald-700 font-extrabold text-xs tracking-wider uppercase">โรคประจำตัว (Chronic Diseases)</h4>
+                      <h4 className="text-emerald-700 font-extrabold text-sm md:text-base tracking-wider uppercase">โรคประจำตัว (Chronic Diseases)</h4>
                       <div className="mt-1.5 flex flex-col gap-1">
                         {patientData.chronics.map((c, i) => (
-                          <div key={i} className="text-xs text-emerald-800 font-extrabold flex items-center gap-1">
+                          <div key={i} className="text-base text-emerald-800 font-extrabold flex items-center gap-1">
                             • {c.clinic_name}
                           </div>
                         ))}
@@ -549,7 +557,7 @@ export default function App() {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-emerald-50/20 border border-emerald-100 p-4 rounded-2xl flex items-center gap-3 text-emerald-600 text-xs self-stretch md:self-auto font-extrabold ring-1 ring-emerald-50">
+                  <div className="bg-emerald-50/20 border border-emerald-100 p-4 rounded-2xl flex items-center gap-3 text-emerald-600 text-base self-stretch md:self-auto font-extrabold ring-1 ring-emerald-50">
                     ✔️ ไม่มีโรคประจำตัวในระบบ
                   </div>
                 )}
@@ -561,16 +569,16 @@ export default function App() {
                       <AlertIcon />
                     </div>
                     <div>
-                      <h4 className="text-red-700 font-extrabold text-xs tracking-wider uppercase">ระวัง: ประวัติแพ้ยา (Drug Allergy)</h4>
+                      <h4 className="text-red-700 font-extrabold text-sm md:text-base tracking-wider uppercase">ระวัง: ประวัติแพ้ยา (Drug Allergy)</h4>
                       {patientData.allergies.map((a, i) => (
-                        <div key={i} className="mt-1.5 text-xs text-red-700 font-extrabold leading-relaxed">
-                          💊 {a.agent} → <span className="text-red-900 font-semibold">{a.symptom}</span>
+                        <div key={i} className="mt-1.5 text-base text-red-700 font-extrabold leading-relaxed">
+                          💊 {a.agent} → <span className="text-red-955 font-bold">{a.symptom}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-2xl flex items-center gap-3 text-rose-600 text-xs self-stretch md:self-auto font-extrabold ring-1 ring-rose-100">
+                  <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-2xl flex items-center gap-3 text-rose-600 text-base self-stretch md:self-auto font-extrabold ring-1 ring-rose-100">
                     ✔️ ไม่มีประวัติการแพ้ยาในฐานข้อมูล
                   </div>
                 )}
@@ -583,8 +591,8 @@ export default function App() {
               {/* 2. Left Side: Visits Timeline Column - Locked Header */}
               <div className="lg:col-span-4 bg-white/90 backdrop-blur-md border border-rose-100/80 rounded-3xl flex flex-col shadow-md max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px] transition-all duration-300 hover:shadow-lg hover:shadow-rose-200/10">
                 <div className="p-4 border-b border-pink-500 bg-gradient-to-r from-pink-500 to-pink-600 text-white flex items-center justify-between">
-                  <h3 className="font-extrabold text-white text-sm">ประวัติการตรวจรักษา ({patientData.visits ? patientData.visits.length : 0} Visits)</h3>
-                  <span className="text-[10px] bg-white/20 border border-white/30 text-white py-0.5 px-2.5 rounded-full font-bold shadow-sm">ล่าสุด</span>
+                  <h3 className="font-extrabold text-white text-lg">ประวัติการตรวจรักษา ({patientData.visits ? patientData.visits.length : 0} Visits)</h3>
+                  <span className="text-sm bg-white/20 border border-white/30 text-white py-0.5 px-2.5 rounded-full font-bold shadow-sm">ล่าสุด</span>
                 </div>
                 <div className="flex-1 overflow-y-auto relative p-4 scrollbar-thin">
                   {/* Timeline vertical connection line */}
@@ -614,14 +622,14 @@ export default function App() {
                             }`}></div>
                             
                             <div className="flex items-center justify-between">
-                              <span className={`text-[11px] font-bold ${isSelected ? 'text-rose-955' : 'text-rose-800'}`}>
+                              <span className={`text-sm md:text-base font-bold ${isSelected ? 'text-rose-955' : 'text-rose-800'}`}>
                                 {formatDate(v.vstdate)} {v.vsttime ? `เวลา ${v.vsttime.substring(0, 5)} น.` : ''}
                               </span>
-                              <span className="text-[9px] text-rose-400 font-mono font-bold">VN: {v.vn}</span>
+                              <span className="text-sm text-rose-400 font-mono font-bold">VN: {v.vn}</span>
                             </div>
                             <div className="flex items-center justify-between gap-3">
-                              <span className="text-xs text-rose-900 font-semibold truncate flex-1">{v.department}</span>
-                              <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
+                              <span className="text-base text-rose-900 font-semibold truncate flex-1">{v.department}</span>
+                              <span className={`text-sm font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
                                 hasAn ? 'bg-amber-100 border border-amber-200 text-amber-700' : 'bg-rose-50 border border-rose-100/80 text-rose-600'
                               }`}>
                                 {hasAn ? `IPD (AN: ${v.an})` : 'OPD'}
@@ -631,7 +639,7 @@ export default function App() {
                         );
                       })
                     ) : (
-                      <div className="p-8 text-center text-zinc-400 text-xs">ไม่พบข้อมูลประวัติการรักษา</div>
+                      <div className="p-8 text-center text-zinc-400 text-sm">ไม่พบข้อมูลประวัติการรักษา</div>
                     )}
                   </div>
                 </div>
@@ -641,18 +649,18 @@ export default function App() {
               <div className="lg:col-span-8 bg-white/90 backdrop-blur-md border border-rose-100/80 rounded-3xl flex flex-col shadow-md max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px] transition-all duration-300 hover:shadow-lg hover:shadow-rose-200/10">
                 <div className="p-4 border-b border-pink-500 bg-gradient-to-r from-pink-500 to-pink-600 text-white flex flex-wrap gap-2 items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-rose-200 font-bold">รายละเอียดของ Visit:</span>
-                    <strong className="text-sm text-white font-extrabold">{selectedVn || 'กรุณาเลือก Visit'}</strong>
+                    <span className="text-sm text-rose-200 font-bold">รายละเอียดของ Visit:</span>
+                    <strong className="text-base text-white font-extrabold">{selectedVn || 'กรุณาเลือก Visit'}</strong>
                   </div>
                   {visitDetails?.isMock && (
-                    <span className="text-[10px] bg-white/20 border border-white/30 text-white py-0.5 px-2.5 rounded-full font-bold">
+                    <span className="text-xs bg-white/20 border border-white/30 text-white py-0.5 px-2.5 rounded-full font-bold">
                       DEMO VISIT DATA
                     </span>
                   )}
                 </div>
 
                 {/* Tabs Selector */}
-                <div className="flex overflow-x-auto bg-rose-50/20 border-b border-rose-100 text-xs font-bold px-4 pt-2.5 gap-1.5 scrollbar-thin">
+                <div className="flex overflow-x-auto bg-rose-50/20 border-b border-rose-100 text-sm font-bold px-4 pt-2.5 gap-1.5 scrollbar-thin">
                   <button
                     onClick={() => setActiveTab('vitals')}
                     className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
@@ -720,12 +728,12 @@ export default function App() {
                   {visitLoading && (
                     <div className="h-full flex flex-col items-center justify-center text-rose-500 py-12 gap-2.5">
                       <div className="w-8 h-8 border-3 border-rose-100 border-t-rose-500 rounded-full animate-spin"></div>
-                      <span className="text-xs font-semibold">กำลังโหลดรายละเอียด Visit...</span>
+                      <span className="text-sm font-semibold">กำลังโหลดรายละเอียด Visit...</span>
                     </div>
                   )}
 
                   {!visitLoading && !visitDetails && (
-                    <div className="h-full flex flex-col items-center justify-center text-pink-600/40 text-xs py-12 font-medium">
+                    <div className="h-full flex flex-col items-center justify-center text-pink-600/40 text-sm py-12 font-medium">
                       กรุณาเลือกบันทึกการรักษาในแถบซ้ายมือเพื่อดูรายละเอียด
                     </div>
                   )}
@@ -740,32 +748,32 @@ export default function App() {
                           {/* Vitals Grid */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <div className="bg-gradient-to-br from-rose-50/60 to-rose-100/25 border border-rose-200/50 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-pink-600 font-extrabold uppercase tracking-wider">ความดันโลหิต (BP)</span>
-                              <strong className="text-xl text-rose-950 font-extrabold">
+                              <span className="text-xs text-pink-600 font-extrabold uppercase tracking-wider">ความดันโลหิต (BP)</span>
+                              <strong className="text-2xl text-rose-955 font-extrabold">
                                 {visitDetails.screening?.bps || '-'}/{visitDetails.screening?.bpd || '-'}
                               </strong>
-                              <span className="text-[10px] text-rose-600/80 font-bold">mmHg</span>
+                              <span className="text-xs text-rose-600/80 font-bold">mmHg</span>
                             </div>
                             <div className="bg-gradient-to-br from-pink-50/60 to-pink-100/25 border border-pink-200/50 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-pink-700 font-extrabold uppercase tracking-wider">ชีพจร (Pulse)</span>
-                              <strong className="text-xl text-pink-950 font-extrabold flex items-center gap-1.5 animate-pulse">
+                              <span className="text-xs text-pink-700 font-extrabold uppercase tracking-wider">ชีพจร (Pulse)</span>
+                              <strong className="text-2xl text-pink-955 font-extrabold flex items-center gap-1.5 animate-pulse">
                                 💓 {visitDetails.screening?.pulse || '-'}
                               </strong>
-                              <span className="text-[10px] text-pink-600/80 font-bold">ครั้ง/นาที</span>
+                              <span className="text-sm text-pink-600/80 font-bold">ครั้ง/นาที</span>
                             </div>
                             <div className="bg-gradient-to-br from-amber-50/50 to-amber-100/20 border border-amber-200/30 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-amber-700 font-extrabold uppercase tracking-wider">อุณหภูมิ (Temp)</span>
+                              <span className="text-xs text-amber-700 font-extrabold uppercase tracking-wider">อุณหภูมิ (Temp)</span>
                               <strong className="text-xl text-amber-950 font-extrabold">
                                 🌡️ {visitDetails.screening?.temperature || '-'}
                               </strong>
-                              <span className="text-[10px] text-amber-600/80 font-bold">°C</span>
+                              <span className="text-xs text-amber-600/80 font-bold">°C</span>
                             </div>
                             <div className="bg-gradient-to-br from-zinc-50/60 to-zinc-100/20 border border-zinc-200/40 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-zinc-700 font-extrabold uppercase tracking-wider">น้ำหนัก/ส่วนสูง</span>
+                              <span className="text-xs text-zinc-700 font-extrabold uppercase tracking-wider">น้ำหนัก/ส่วนสูง</span>
                               <strong className="text-sm text-zinc-950 truncate font-extrabold">
                                 W: {visitDetails.screening?.bw || '-'} kg / H: {visitDetails.screening?.height || '-'} cm
                               </strong>
-                              <span className="text-[10px] text-zinc-600 font-bold">
+                              <span className="text-xs text-zinc-600 font-bold">
                                 BMI: {visitDetails.screening?.bmi || '-'}
                               </span>
                             </div>
@@ -773,24 +781,24 @@ export default function App() {
 
                           {/* Chief Complaint */}
                           <div className="flex flex-col gap-2">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">อาการสำคัญ (Chief Complaint)</h4>
-                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-xs text-rose-955 leading-relaxed font-medium">
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">อาการสำคัญ (Chief Complaint)</h4>
+                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-sm text-rose-955 leading-relaxed font-medium">
                               {visitDetails.screening?.cc || 'ไม่ได้ระบุอาการสำคัญ'}
                             </div>
                           </div>
 
                           {/* HPI (History of Present Illness) */}
                           <div className="flex flex-col gap-2">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">ประวัติปัจจุบัน (History of Present Illness)</h4>
-                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-xs text-zinc-700 leading-relaxed font-medium">
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">ประวัติปัจจุบัน (History of Present Illness)</h4>
+                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-sm text-zinc-700 leading-relaxed font-medium">
                               {visitDetails.screening?.hpi || 'ไม่ได้ระบุประวัติการเจ็บป่วยปัจจุบัน'}
                             </div>
                           </div>
 
                           {/* PE (Physical Examination) */}
                           <div className="flex flex-col gap-2">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">การตรวจร่างกาย (Physical Exam)</h4>
-                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-xs font-mono text-zinc-600 leading-relaxed whitespace-pre-line">
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">การตรวจร่างกาย (Physical Exam)</h4>
+                            <div className="bg-rose-50/10 border border-rose-100/80 p-4 rounded-xl text-sm font-mono text-zinc-600 leading-relaxed whitespace-pre-line">
                               {visitDetails.screening?.pe || 'ไม่ได้ระบุการตรวจร่างกาย'}
                             </div>
                           </div>
@@ -802,9 +810,9 @@ export default function App() {
                         <div className="flex flex-col gap-6">
                           {/* Diagnoses Table */}
                           <div className="flex flex-col gap-3">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">การวินิจฉัยโรค (Diagnoses)</h4>
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">การวินิจฉัยโรค (Diagnoses)</h4>
                             <div className="border border-rose-100 rounded-xl overflow-y-auto max-h-[300px] shadow-sm relative scrollbar-thin">
-                              <table className="w-full text-left text-xs border-collapse">
+                              <table className="w-full text-left text-sm border-collapse">
                                 <thead className="sticky top-0 z-10">
                                   <tr className="bg-gradient-to-r from-pink-500 to-pink-600 text-white border-b border-pink-500">
                                     <th className="p-3 font-bold">ICD-10</th>
@@ -820,10 +828,10 @@ export default function App() {
                                         <td className="p-3 font-mono font-bold text-rose-600">{diag.icd10}</td>
                                         <td className="p-3 text-rose-955 font-semibold">
                                           <div>{diag.icd10_name}</div>
-                                          <div className="text-[10px] text-pink-600/70 mt-0.5 font-medium">{diag.icd10_tname}</div>
+                                          <div className="text-xs text-pink-600/70 mt-0.5 font-medium">{diag.icd10_tname}</div>
                                         </td>
                                         <td className="p-3">
-                                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                                          <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
                                             diag.diagtype_name && diag.diagtype_name.includes('PRINCIPLE') ? 'bg-rose-500/10 border border-rose-200 text-pink-600' : 'bg-zinc-100 text-zinc-500'
                                           }`}>
                                             {diag.diagtype_name || 'CO-MORBIDITY'}
@@ -844,7 +852,7 @@ export default function App() {
 
                           {/* Procedures Table */}
                           <div className="flex flex-col gap-3">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">หัตถการและการผ่าตัด (Procedures / Operation)</h4>
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">หัตถการและการผ่าตัด (Procedures / Operation)</h4>
                             <div className="border border-rose-100 rounded-xl overflow-y-auto max-h-[300px] shadow-sm relative scrollbar-thin">
                               <table className="w-full text-left text-xs border-collapse">
                                 <thead className="sticky top-0 z-10">
@@ -880,7 +888,7 @@ export default function App() {
                       {/* 3. Prescriptions */}
                       {activeTab === 'drugs' && (
                         <div className="flex flex-col gap-3">
-                          <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">รายการยารักษาโรคที่สั่งจ่าย (Prescribed Medications)</h4>
+                          <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">รายการยารักษาโรคที่สั่งจ่าย (Prescribed Medications)</h4>
                           <div className="border border-rose-100 rounded-xl overflow-y-auto max-h-[400px] shadow-sm relative">
                             <table className="w-full text-left text-xs border-collapse">
                               <thead className="sticky top-0 z-10">
@@ -901,7 +909,7 @@ export default function App() {
                                         {drug.drug_name}
                                       </td>
                                       <td className="p-3 text-center text-rose-800 font-bold bg-rose-50/20">{drug.qty} Tab</td>
-                                      <td className="p-3 text-zinc-700 text-xs italic font-semibold">{drug.drug_usage || 'ไม่ได้ระบุวิธีกิน'}</td>
+                                      <td className="p-3 text-zinc-700 text-sm italic font-semibold">{drug.drug_usage || 'ไม่ได้ระบุวิธีกิน'}</td>
                                     </tr>
                                   ))
                                 ) : (
@@ -918,7 +926,7 @@ export default function App() {
                       {/* 4. Lab Results */}
                       {activeTab === 'labs' && (
                         <div className="flex flex-col gap-3">
-                          <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">ผลตรวจทางห้องปฏิบัติการ (Laboratory Results)</h4>
+                          <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">ผลตรวจทางห้องปฏิบัติการ (Laboratory Results)</h4>
                           <div className="border border-rose-100 rounded-xl overflow-y-auto max-h-[400px] shadow-sm relative">
                             <table className="w-full text-left text-xs border-collapse">
                               <thead className="sticky top-0 z-10">
@@ -946,7 +954,7 @@ export default function App() {
 
                                     return (
                                       <tr key={index} className="hover:bg-rose-50/20">
-                                        <td className="p-3 text-[10px] font-bold text-rose-500 uppercase tracking-wider">{lab.sub_group}</td>
+                                        <td className="p-3 text-xs font-bold text-rose-500 uppercase tracking-wider">{lab.sub_group}</td>
                                         <td className="p-3 text-rose-955 font-bold">{lab.lab_name}</td>
                                         <td className={`p-3 text-center font-extrabold ${
                                           isAbnormal ? 'bg-amber-100 text-amber-700 border border-amber-200 rounded' : 'text-emerald-600'
@@ -956,7 +964,7 @@ export default function App() {
                                         <td className="p-3 text-zinc-600 font-mono font-semibold">{lab.unit}</td>
                                         <td className="p-3 text-zinc-500 font-mono">{lab.normal_value || '-'}</td>
                                         <td className="p-3 text-center">
-                                           <span className={`text-[10px] py-0.5 px-2.5 rounded-full font-bold border ${
+                                           <span className={`text-xs py-0.5 px-2.5 rounded-full font-bold border ${
                                              lab.confirm === 'Y'
                                                ? 'bg-emerald-50 border-emerald-200 text-emerald-600'
                                                : 'bg-amber-50 border-amber-200 text-amber-600'
@@ -981,28 +989,28 @@ export default function App() {
                       {/* 5. X-ray Reports */}
                       {activeTab === 'xrays' && (
                         <div className="flex flex-col gap-6">
-                          <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">รายงานผลการตรวจทางรังสีวิทยา (Radiology X-ray Reports)</h4>
+                          <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">รายงานผลการตรวจทางรังสีวิทยา (Radiology X-ray Reports)</h4>
                           {visitDetails.xrays && visitDetails.xrays.length > 0 ? (
                             visitDetails.xrays.map((xray, index) => (
                               <div key={index} className="bg-rose-50/10 border border-rose-100 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-rose-100">
                                 {/* Film Meta Left */}
                                 <div className="p-5 md:w-1/3 bg-rose-50/20 flex flex-col gap-3">
-                                  <div className="text-rose-500 text-[10px] font-bold uppercase tracking-wider">X-ray Information</div>
+                                  <div className="text-rose-500 text-xs font-bold uppercase tracking-wider">X-ray Information</div>
                                   <div className="flex flex-col gap-1">
-                                    <span className="text-xs text-pink-600/80 font-semibold">ชื่อการส่งตรวจ:</span>
-                                    <strong className="text-xs text-rose-955 font-extrabold">☢️ {xray.xray_items_name}</strong>
+                                    <span className="text-sm text-pink-600/80 font-semibold">ชื่อการส่งตรวจ:</span>
+                                    <strong className="text-base text-rose-955 font-extrabold">☢️ {xray.xray_items_name}</strong>
                                   </div>
                                   <div className="flex flex-col gap-1">
                                     <span className="text-xs text-pink-600/80 font-semibold">รหัสประเภท:</span>
-                                    <strong className="text-xs text-rose-900 font-mono font-bold">{xray.type_name || 'Chest'}</strong>
+                                    <strong className="text-sm text-rose-900 font-mono font-bold">{xray.type_name || 'Chest'}</strong>
                                   </div>
                                   <div className="flex flex-col gap-1">
                                     <span className="text-xs text-pink-600/80 font-semibold">เลขที่ฟิล์ม XN:</span>
-                                    <strong className="text-xs text-pink-600 font-mono font-bold">{xray.xn}</strong>
+                                    <strong className="text-sm text-pink-600 font-mono font-bold">{xray.xn}</strong>
                                   </div>
                                   <div className="flex flex-col gap-1">
                                     <span className="text-xs text-pink-600/80 font-semibold">แพทย์ผู้ส่งตรวจ:</span>
-                                    <strong className="text-xs text-rose-900 font-bold">{xray.request_doctor_name || xray.request_doctor || '-'}</strong>
+                                    <strong className="text-sm text-rose-900 font-bold">{xray.request_doctor_name || xray.request_doctor || '-'}</strong>
                                   </div>
                                 </div>
 
@@ -1010,11 +1018,11 @@ export default function App() {
                                 <div className="p-5 flex-1 flex flex-col gap-4 bg-white">
                                   <div className="flex items-center justify-between">
                                     <span className="text-rose-500 text-[10px] font-bold uppercase tracking-wider">Radiology Report Text</span>
-                                    <span className="text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 py-0.5 px-2 rounded-full font-extrabold">
+                                    <span className="text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 py-0.5 px-2 rounded-full font-extrabold">
                                       Film Read Confirmed
                                     </span>
                                   </div>
-                                  <pre className="bg-rose-50/30 border border-rose-100 rounded-lg p-4 text-xs font-mono text-rose-955 leading-relaxed overflow-x-auto whitespace-pre-wrap font-semibold">
+                                  <pre className="bg-rose-50/30 border border-rose-100 rounded-lg p-4 text-sm font-mono text-rose-955 leading-relaxed overflow-x-auto whitespace-pre-wrap font-semibold">
                                     {xray.report_text || 'ไม่มีข้อมูลรายงานผลการอ่านฟิล์ม'}
                                   </pre>
                                 </div>
@@ -1033,14 +1041,14 @@ export default function App() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Appointments */}
                           <div className="flex flex-col gap-3">
-                            <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">ใบนัดหมายติดตามผล (Appointments)</h4>
+                            <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">ใบนัดหมายติดตามผล (Appointments)</h4>
                             {visitDetails.appointments && visitDetails.appointments.length > 0 ? (
                               visitDetails.appointments.map((app, index) => (
                                 <div key={index} className="bg-rose-50/20 border border-rose-100 p-4 rounded-xl flex items-start gap-3.5 shadow-sm">
                                   <div className="bg-rose-500/10 text-rose-600 p-2 rounded-lg border border-rose-200 mt-0.5">
                                     <CalendarIcon />
                                   </div>
-                                  <div className="flex flex-col gap-1.5 text-xs text-rose-900 font-semibold">
+                                  <div className="flex flex-col gap-1.5 text-sm text-rose-900 font-semibold">
                                     <div className="text-xs text-pink-600/80 font-bold">วันเวลานัดครั้งถัดไป:</div>
                                     <strong className="text-sm text-rose-950 font-extrabold">
                                       📅 {formatDate(app.nextdate)} เวลา {app.nexttime || '08:30'} น.
@@ -1052,7 +1060,7 @@ export default function App() {
                                       แพทย์: <strong className="text-rose-955 font-bold">{app.doctor_name || '-'}</strong>
                                     </div>
                                     {app.note && (
-                                      <div className="bg-white p-2 border border-rose-100 rounded text-[11px] text-rose-800 mt-1 leading-relaxed shadow-sm font-medium">
+                                      <div className="bg-white p-2 border border-rose-100 rounded text-xs text-rose-800 mt-1 leading-relaxed shadow-sm font-medium">
                                         💡 ข้อปฏิบัติการเตรียมตัว: {app.note}
                                       </div>
                                     )}
@@ -1070,12 +1078,12 @@ export default function App() {
                           <div className="flex flex-col gap-4">
                             {/* Refer Out */}
                             <div className="flex flex-col gap-2.5">
-                              <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">การส่งต่อผู้ป่วย (Refer Out)</h4>
+                              <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">การส่งต่อผู้ป่วย (Refer Out)</h4>
                               {visitDetails.referrals && visitDetails.referrals.length > 0 ? (
                                 visitDetails.referrals.map((ref, index) => (
-                                  <div key={index} className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-2 text-xs text-rose-900">
+                                  <div key={index} className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-2 text-sm text-rose-900">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-[10px] bg-rose-500/10 border border-rose-200 text-pink-600 font-extrabold px-2 py-0.5 rounded">
+                                      <span className="text-xs bg-rose-500/10 border border-rose-200 text-pink-600 font-extrabold px-2 py-0.5 rounded">
                                         ส่งออก (REFER OUT)
                                       </span>
                                       <span className="text-rose-500 font-mono font-bold">{formatDate(ref.refer_date)}</span>
@@ -1087,7 +1095,7 @@ export default function App() {
                                       เหตุผลการส่งต่อ: <strong className="text-rose-950 font-bold">{ref.refer_cause_name || ref.refer_cause || '-'}</strong>
                                     </div>
                                     {ref.pre_diagnosis && (
-                                      <div className="bg-white p-2 rounded text-[11px] text-rose-800 border border-rose-100 leading-relaxed font-semibold shadow-sm">
+                                      <div className="bg-white p-2 rounded text-xs text-rose-800 border border-rose-100 leading-relaxed font-semibold shadow-sm">
                                         วินิจฉัยขั้นแรก: {ref.pre_diagnosis}
                                       </div>
                                     )}
@@ -1102,12 +1110,12 @@ export default function App() {
 
                             {/* Refer In */}
                             <div className="flex flex-col gap-2.5">
-                              <h4 className="text-xs font-bold text-pink-600 uppercase tracking-wide">การรับโอนผู้ป่วย (Refer In)</h4>
+                              <h4 className="text-sm font-bold text-pink-600 uppercase tracking-wide">การรับโอนผู้ป่วย (Refer In)</h4>
                               {visitDetails.referins && visitDetails.referins.length > 0 ? (
                                 visitDetails.referins.map((ref, index) => (
-                                  <div key={index} className="bg-emerald-50/5 border border-emerald-500/20 p-4 rounded-xl flex flex-col gap-2 text-xs text-zinc-800 font-semibold">
+                                  <div key={index} className="bg-emerald-50/5 border border-emerald-500/20 p-4 rounded-xl flex flex-col gap-2 text-sm text-zinc-800 font-semibold">
                                     <div className="flex items-center justify-between">
-                                      <span className="text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 font-extrabold px-2 py-0.5 rounded">
+                                      <span className="text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 font-extrabold px-2 py-0.5 rounded">
                                         รับส่งต่อ (REFER IN)
                                       </span>
                                       <span className="text-zinc-500 font-mono font-bold">{formatDate(ref.refer_date)}</span>
@@ -1119,7 +1127,7 @@ export default function App() {
                                       เลขที่ใบส่งตัว: <strong className="text-zinc-900 font-mono font-bold">{ref.referin_no || '-'}</strong>
                                     </div>
                                     {ref.pre_diagnosis && (
-                                      <div className="bg-white p-2 rounded text-[11px] text-zinc-600 border border-zinc-100 leading-relaxed font-medium">
+                                      <div className="bg-white p-2 rounded text-xs text-zinc-600 border border-zinc-100 leading-relaxed font-medium">
                                         การวินิจฉัยจากรพ.ต้นทาง: {ref.pre_diagnosis}
                                       </div>
                                     )}

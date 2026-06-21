@@ -63,6 +63,28 @@ export async function GET(request, { params }) {
     const screenings = await query(screeningSql, [vn]);
     const screening = screenings.length > 0 ? screenings[0] : null;
 
+    // 2.5 Fetch treatment rights (pttype)
+    let pttype = null;
+    try {
+      const pttypeSql = `
+        SELECT o.pttype, p.name AS pttype_name
+        FROM ovst o
+        LEFT OUTER JOIN pttype p ON p.pttype = o.pttype
+        WHERE o.vn = ?
+        LIMIT 1
+      `;
+      const pttypes = await query(pttypeSql, [vn]);
+      pttype = pttypes.length > 0 ? pttypes[0] : null;
+    } catch (err) {
+      console.warn('Failed to query pttype table:', err.message);
+      try {
+        const pttypes = await query('SELECT pttype FROM ovst WHERE vn = ? LIMIT 1', [vn]);
+        pttype = pttypes.length > 0 ? pttypes[0] : null;
+      } catch (e) {
+        pttype = null;
+      }
+    }
+
     // 3. Fetch drugs prescribed on this visit (uses AN if admitted, otherwise VN)
     const drugsSql = `
       SELECT i.order_no, i.rxdate, i.item_no, i.qty,
@@ -287,6 +309,7 @@ export async function GET(request, { params }) {
       success: true,
       data: {
         screening,
+        pttype,
         drugs,
         labs,
         xrays,
