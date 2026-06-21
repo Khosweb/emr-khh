@@ -324,51 +324,51 @@ export default function App() {
   if (!session) {
     // LOGIN SCREEN - Premium Light Pink & White Color Scheme
     return (
-      <div className="flex min-h-screen items-center justify-center bg-rose-50/30 p-6 relative overflow-hidden">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-tr from-rose-100/30 via-white to-pink-100/20 p-6 relative overflow-hidden">
         {/* Soft Pink Background Glows */}
-        <div className="absolute top-0 -left-12 w-[500px] h-[500px] bg-rose-200 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
-        <div className="absolute bottom-0 -right-12 w-[500px] h-[500px] bg-pink-100 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
+        <div className="absolute top-0 -left-12 w-[600px] h-[600px] bg-rose-200/50 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
+        <div className="absolute bottom-0 -right-12 w-[600px] h-[600px] bg-pink-150/40 rounded-full filter blur-[150px] opacity-40 animate-pulse"></div>
 
-        <div className="w-full max-w-md bg-white border border-rose-100/80 p-8 rounded-3xl shadow-xl shadow-rose-100/40 backdrop-blur-md flex flex-col gap-8 relative z-10">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="bg-rose-500/10 text-rose-500 p-3.5 rounded-2xl border border-rose-200/50">
+        <div className="w-full max-w-md glassmorphism rounded-3xl shadow-2xl shadow-rose-200/30 p-8 flex flex-col gap-8 relative z-10 border border-white/40 transition-all duration-300 hover:shadow-rose-200/40">
+          <div className="flex flex-col items-center gap-3.5 text-center">
+            <div className="bg-gradient-to-br from-rose-500 to-pink-500 text-white p-4 rounded-3xl shadow-lg shadow-rose-200/60 border border-rose-400/20 animate-float">
               <StethoscopeIcon />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-rose-900 mt-2">
+            <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-rose-900 via-rose-800 to-pink-700 bg-clip-text text-transparent mt-2">
               HOSxP EMR Portal
             </h1>
-            <p className="text-sm text-rose-700/80 font-medium">
+            <p className="text-xs text-rose-700/80 font-bold tracking-wide uppercase">
               ระบบสืบค้นเวชระเบียนผู้ป่วยอิเล็กทรอนิกส์ (EMR)
             </p>
           </div>
 
           <form onSubmit={handleLoginSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-rose-800 tracking-wider uppercase">Username</label>
+              <label className="text-xs font-bold text-rose-800/80 tracking-wider uppercase">Username</label>
               <input
                 type="text"
                 placeholder="ระบุรหัสเข้าใช้งาน เช่น demo"
                 required
-                className="w-full bg-rose-50/20 border border-rose-100 rounded-xl px-4 py-3 text-sm text-rose-955 placeholder-rose-300 focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 transition"
+                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-sm text-rose-955 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
                 value={loginForm.username}
                 onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-rose-800 tracking-wider uppercase">Password</label>
+              <label className="text-xs font-bold text-rose-800/80 tracking-wider uppercase">Password</label>
               <input
                 type="password"
                 placeholder="ระบุรหัสผ่าน"
                 required
-                className="w-full bg-rose-50/20 border border-rose-100 rounded-xl px-4 py-3 text-sm text-rose-900 placeholder-rose-300 focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 transition"
+                className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-sm text-rose-900 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
                 value={loginForm.password}
                 onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
               />
             </div>
 
             {loginError && (
-              <div className="bg-rose-100 border border-rose-200 text-rose-600 text-xs p-3 rounded-lg text-center font-bold">
+              <div className="bg-rose-100/80 border border-rose-200 text-rose-600 text-xs p-3 rounded-lg text-center font-bold">
                 ⚠️ {loginError}
               </div>
             )}
@@ -376,7 +376,7 @@ export default function App() {
             <button
               type="submit"
               disabled={loginLoading}
-              className="w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-xl text-sm font-bold shadow-lg shadow-rose-200 hover:shadow-rose-300 disabled:opacity-50 transition duration-150 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-rose-200/80 hover:shadow-xl hover:shadow-rose-300/80 disabled:opacity-50 transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               {loginLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -387,15 +387,15 @@ export default function App() {
           </form>
 
           {/* Quick Demo Mode Options */}
-          <div className="border-t border-rose-100 pt-6 flex flex-col gap-3">
-            <span className="text-xs text-center text-rose-700/70 font-semibold">ทดลองใช้งานโปรแกรมด้วยข้อมูลจำลอง (Demo Mode)</span>
+          <div className="border-t border-rose-100/80 pt-6 flex flex-col gap-3.5">
+            <span className="text-[11px] text-center text-rose-700/60 font-bold uppercase tracking-wider">ทดลองใช้งานโปรแกรมด้วยข้อมูลจำลอง (Demo Mode)</span>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => {
                   setLoginForm({ username: 'demo', password: 'password' });
                   setLoginError('');
                 }}
-                className="bg-rose-50/60 hover:bg-rose-50 border border-rose-100 text-rose-800 text-xs font-bold py-2 px-3 rounded-lg text-center transition cursor-pointer"
+                className="bg-rose-50/40 hover:bg-rose-100/50 border border-rose-100/50 text-rose-800 text-xs font-extrabold py-3 px-4 rounded-xl text-center transition hover:scale-[1.02] shadow-sm cursor-pointer"
               >
                 ผู้ใช้ทดสอบ: demo
               </button>
@@ -404,12 +404,12 @@ export default function App() {
                   setLoginForm({ username: 'admin', password: 'password' });
                   setLoginError('');
                 }}
-                className="bg-rose-50/60 hover:bg-rose-50 border border-rose-100 text-rose-800 text-xs font-bold py-2 px-3 rounded-lg text-center transition cursor-pointer"
+                className="bg-rose-50/40 hover:bg-rose-100/50 border border-rose-100/50 text-rose-800 text-xs font-extrabold py-3 px-4 rounded-xl text-center transition hover:scale-[1.02] shadow-sm cursor-pointer"
               >
                 ผู้ใช้จำลอง: admin
               </button>
             </div>
-            <p className="text-[10px] text-center text-rose-600 leading-normal font-medium">
+            <p className="text-[10px] text-center text-rose-600 leading-normal font-semibold">
               *ระบุชื่อผู้ใช้และรหัสผ่านของท่าน หรือกดเลือกปุ่มทดลองใช้งานเพื่อทดสอบระบบหน้าบ้าน
             </p>
           </div>
@@ -420,14 +420,14 @@ export default function App() {
 
   // APP DASHBOARD SCREEN - Pink & White Light Theme
   return (
-    <div className="min-h-screen bg-rose-50/20 text-zinc-800 font-sans flex flex-col antialiased">
+    <div className="min-h-screen bg-gradient-to-b from-rose-50/10 via-white to-rose-50/5 text-zinc-800 font-sans flex flex-col antialiased">
       
       {/* Top Header with Search and Shortcuts */}
-      <header className="bg-white border-b border-rose-100 backdrop-blur-md sticky top-0 z-30 px-6 py-3.5 flex items-center justify-between gap-6 shadow-sm shadow-rose-100/10">
+      <header className="bg-white/80 backdrop-blur-xl border-b border-rose-100/70 sticky top-0 z-30 px-6 py-3.5 flex items-center justify-between gap-6 shadow-sm shadow-rose-100/5">
         <div className="flex items-center gap-6 flex-1 max-w-4xl">
           {/* Logo */}
-          <div className="flex items-center gap-2.5 shrink-0">
-            <div className="bg-rose-500/10 text-rose-500 p-1.5 rounded-lg border border-rose-200/50">
+          <div className="flex items-center gap-2.5 shrink-0 hover:scale-[1.02] transition-transform duration-200">
+            <div className="bg-gradient-to-br from-rose-500 to-pink-500 text-white p-2 rounded-xl shadow-md shadow-rose-200/50 border border-rose-400/10">
               <StethoscopeIcon />
             </div>
             <div>
@@ -441,25 +441,25 @@ export default function App() {
             <input
               type="text"
               placeholder="ค้นหา HN (เช่น 1234567)"
-              className="w-full bg-rose-50/40 border border-rose-100 rounded-lg pl-9 pr-3 py-1.5 text-xs text-rose-955 placeholder-rose-300 focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 transition"
+              className="w-full bg-rose-50/30 border border-rose-100/70 rounded-xl pl-10 pr-3 py-2 text-xs text-rose-955 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-200"
               value={searchHn}
               onChange={(e) => setSearchHn(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearchPatient()}
             />
-            <div className="absolute left-3 top-2 text-rose-400">
+            <div className="absolute left-3.5 top-2.5 text-rose-400">
               <SearchIcon />
             </div>
           </div>
 
           {/* Quick Demo Patients shortcuts */}
-          <div className="hidden md:flex items-center gap-1.5 shrink-0">
-            <span className="text-[10px] text-rose-700/60 font-bold">ทางลัด:</span>
+          <div className="hidden md:flex items-center gap-2 shrink-0">
+            <span className="text-[10px] text-rose-700/60 font-bold uppercase tracking-wider">ทางลัด:</span>
             <button
               onClick={() => {
                 setSearchHn('1234567');
                 handleSearchPatient('1234567');
               }}
-              className="bg-rose-50 hover:bg-rose-100 border border-rose-100 text-[10px] py-1 px-2 rounded-md text-rose-800 font-bold transition cursor-pointer"
+              className="bg-rose-50/40 hover:bg-rose-100/60 border border-rose-100/60 text-[10px] py-1 px-3 rounded-full text-rose-800 font-bold transition duration-200 hover:scale-[1.03] cursor-pointer shadow-sm"
             >
               สมชาย (1234567)
             </button>
@@ -468,7 +468,7 @@ export default function App() {
                 setSearchHn('1020304');
                 handleSearchPatient('1020304');
               }}
-              className="bg-rose-50 hover:bg-rose-100 border border-rose-100 text-[10px] py-1 px-2 rounded-md text-rose-800 font-bold transition cursor-pointer"
+              className="bg-rose-50/40 hover:bg-rose-100/60 border border-rose-100/60 text-[10px] py-1 px-3 rounded-full text-rose-800 font-bold transition duration-200 hover:scale-[1.03] cursor-pointer shadow-sm"
             >
               วัลลภา (1020304)
             </button>
@@ -480,11 +480,11 @@ export default function App() {
           <div className="hidden lg:flex items-center gap-3 text-right">
             <div>
               <p className="text-xs font-bold text-rose-900">{session.user.name}</p>
-              <p className="text-[10px] text-rose-700/80 font-bold">
+              <p className="text-[10px] text-rose-750 font-bold">
                 {session.user.department} ({session.user.group})
               </p>
             </div>
-            <div className="bg-rose-50 text-rose-500 p-2 rounded-full border border-rose-100">
+            <div className="bg-gradient-to-br from-rose-50 to-pink-50 text-rose-500 p-2 rounded-full border border-rose-100 shadow-inner">
               <UserIcon />
             </div>
           </div>
@@ -590,12 +590,12 @@ export default function App() {
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
               
               {/* 2. Left Side: Visits Timeline Column - Locked Header */}
-              <div className="lg:col-span-4 bg-white border border-rose-100 rounded-2xl flex flex-col shadow-sm max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px]">
-                <div className="p-4 border-b border-rose-100 bg-rose-50/20 flex items-center justify-between">
+              <div className="lg:col-span-4 bg-white border border-rose-100 rounded-3xl flex flex-col shadow-sm max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px] transition-all duration-300 hover:shadow-md hover:shadow-rose-150/5">
+                <div className="p-4 border-b border-rose-100 bg-gradient-to-r from-rose-50/50 to-pink-50/30 flex items-center justify-between">
                   <h3 className="font-extrabold text-rose-955 text-sm">ประวัติการตรวจรักษา ({patientData.visits ? patientData.visits.length : 0} Visits)</h3>
-                  <span className="text-[10px] bg-rose-500/10 border border-rose-200 text-rose-700 py-0.5 px-2 rounded-md font-extrabold">ล่าสุด</span>
+                  <span className="text-[10px] bg-gradient-to-r from-rose-500 to-pink-500 text-white py-0.5 px-2.5 rounded-full font-bold shadow-sm">ล่าสุด</span>
                 </div>
-                <div className="flex-1 overflow-y-auto divide-y divide-rose-50/80">
+                <div className="flex-1 overflow-y-auto divide-y divide-rose-50/50">
                   {patientData.visits && patientData.visits.length > 0 ? (
                     patientData.visits.map((v) => {
                       const isSelected = selectedVn === v.vn;
@@ -604,22 +604,22 @@ export default function App() {
                         <button
                           key={v.vn}
                           onClick={() => handleSelectVisit(v.vn)}
-                          className={`w-full text-left p-4 transition-all duration-150 relative cursor-pointer flex flex-col gap-2 ${
+                          className={`w-full text-left p-4.5 transition-all duration-200 relative cursor-pointer flex flex-col gap-2 ${
                             isSelected
-                              ? 'bg-rose-50/80 border-l-4 border-rose-500'
-                              : 'hover:bg-rose-50/20 border-l-4 border-transparent'
+                              ? 'bg-rose-500/5 border-l-4 border-rose-500 font-extrabold'
+                              : 'hover:bg-rose-50/30 border-l-4 border-transparent hover:border-l-rose-300/40'
                           }`}
                         >
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-rose-955">
+                            <span className={`text-xs font-bold ${isSelected ? 'text-rose-900' : 'text-rose-955'}`}>
                               {formatDate(v.vstdate)} {v.vsttime ? `เวลา ${v.vsttime.substring(0, 5)} น.` : ''}
                             </span>
                             <span className="text-[9px] text-rose-400 font-mono font-bold">VN: {v.vn}</span>
                           </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-rose-900 font-semibold truncate max-w-[180px]">{v.department}</span>
-                            <span className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded ${
-                              hasAn ? 'bg-amber-100 border border-amber-200 text-amber-700' : 'bg-rose-50 border border-rose-100 text-rose-600'
+                          <div className="flex items-center justify-between gap-4">
+                            <span className="text-xs text-rose-900 font-semibold truncate flex-1">{v.department}</span>
+                            <span className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
+                              hasAn ? 'bg-amber-100 border border-amber-200 text-amber-700' : 'bg-rose-50 border border-rose-100/80 text-rose-600'
                             }`}>
                               {hasAn ? `IPD (AN: ${v.an})` : 'OPD'}
                             </span>
@@ -634,65 +634,65 @@ export default function App() {
               </div>
 
               {/* 3. Right Side: Visit Details Viewer - Locked Header */}
-              <div className="lg:col-span-8 bg-white border border-rose-100 rounded-2xl flex flex-col shadow-sm max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px]">
-                <div className="p-4 border-b border-rose-100 bg-rose-50/20 flex flex-wrap gap-2 items-center justify-between">
+              <div className="lg:col-span-8 bg-white border border-rose-100 rounded-3xl flex flex-col shadow-sm max-h-[600px] lg:max-h-[calc(100vh-220px)] overflow-hidden lg:sticky lg:top-[96px] transition-all duration-300 hover:shadow-md hover:shadow-rose-150/5">
+                <div className="p-4 border-b border-rose-100 bg-gradient-to-r from-rose-50/50 to-pink-50/30 flex flex-wrap gap-2 items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-rose-700 font-bold">รายละเอียดของ Visit:</span>
                     <strong className="text-sm text-rose-950 font-extrabold">{selectedVn || 'กรุณาเลือก Visit'}</strong>
                   </div>
                   {visitDetails?.isMock && (
-                    <span className="text-[10px] bg-rose-500/10 border border-rose-200 text-rose-600 py-0.5 px-2 rounded-md font-extrabold">
+                    <span className="text-[10px] bg-rose-500/10 border border-rose-200 text-rose-600 py-0.5 px-2.5 rounded-full font-bold">
                       DEMO VISIT DATA
                     </span>
                   )}
                 </div>
 
                 {/* Tabs Selector */}
-                <div className="flex overflow-x-auto bg-white border-b border-rose-100 text-xs font-bold px-2 divide-x divide-rose-50">
+                <div className="flex overflow-x-auto bg-rose-50/15 border-b border-rose-100 text-xs font-bold px-3 pt-2 gap-1">
                   <button
                     onClick={() => setActiveTab('vitals')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'vitals' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'vitals' ? 'text-rose-600 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     🏥 คัดกรองและสัญญาณชีพ
                   </button>
                   <button
                     onClick={() => setActiveTab('diagnoses')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'diagnoses' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'diagnoses' ? 'text-rose-600 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     🩺 การวินิจฉัยและหัตถการ
                   </button>
                   <button
                     onClick={() => setActiveTab('drugs')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'drugs' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'drugs' ? 'text-rose-650 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     💊 รายการยารักษา
                   </button>
                   <button
                     onClick={() => setActiveTab('labs')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'labs' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'labs' ? 'text-rose-600 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     🧪 ผลตรวจทางห้องแล็บ
                   </button>
                   <button
                     onClick={() => setActiveTab('xrays')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'xrays' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'xrays' ? 'text-rose-600 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     ☢️ ผลเอกซเรย์ X-ray
                   </button>
                   <button
                     onClick={() => setActiveTab('appointments')}
-                    className={`py-3 px-4 transition-all duration-150 whitespace-nowrap cursor-pointer ${
-                      activeTab === 'appointments' ? 'text-rose-600 border-b-2 border-rose-500 bg-rose-50/10' : 'text-rose-800/70 hover:text-rose-600'
+                    className={`py-3 px-4 transition-all duration-200 whitespace-nowrap cursor-pointer rounded-t-xl ${
+                      activeTab === 'appointments' ? 'text-rose-600 bg-white border-t border-x border-rose-100/80 shadow-sm font-extrabold' : 'text-rose-800/70 hover:text-rose-600 hover:bg-white/40'
                     }`}
                   >
                     📅 การนัดหมายและส่งต่อ
@@ -723,33 +723,33 @@ export default function App() {
                         <div className="flex flex-col gap-6">
                           {/* Vitals Grid */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">ความดันโลหิต (BP)</span>
-                              <strong className="text-lg text-rose-955">
+                            <div className="bg-gradient-to-br from-rose-50/60 to-rose-100/25 border border-rose-200/50 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
+                              <span className="text-[10px] text-rose-700 font-extrabold uppercase tracking-wider">ความดันโลหิต (BP)</span>
+                              <strong className="text-xl text-rose-950 font-extrabold">
                                 {visitDetails.screening?.bps || '-'}/{visitDetails.screening?.bpd || '-'}
                               </strong>
-                              <span className="text-[10px] text-rose-600 font-semibold">mmHg</span>
+                              <span className="text-[10px] text-rose-600/80 font-bold">mmHg</span>
                             </div>
-                            <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">ชีพจร (Pulse)</span>
-                              <strong className="text-lg text-rose-955 flex items-center gap-1.5">
+                            <div className="bg-gradient-to-br from-pink-50/60 to-pink-100/25 border border-pink-200/50 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
+                              <span className="text-[10px] text-pink-700 font-extrabold uppercase tracking-wider">ชีพจร (Pulse)</span>
+                              <strong className="text-xl text-pink-950 font-extrabold flex items-center gap-1.5 animate-pulse">
                                 💓 {visitDetails.screening?.pulse || '-'}
                               </strong>
-                              <span className="text-[10px] text-rose-600 font-semibold">ครั้ง/นาที</span>
+                              <span className="text-[10px] text-pink-600/80 font-bold">ครั้ง/นาที</span>
                             </div>
-                            <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">อุณหภูมิ (Temp)</span>
-                              <strong className="text-lg text-rose-955">
+                            <div className="bg-gradient-to-br from-amber-50/50 to-amber-100/20 border border-amber-200/30 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
+                              <span className="text-[10px] text-amber-700 font-extrabold uppercase tracking-wider">อุณหภูมิ (Temp)</span>
+                              <strong className="text-xl text-amber-950 font-extrabold">
                                 🌡️ {visitDetails.screening?.temperature || '-'}
                               </strong>
-                              <span className="text-[10px] text-rose-600 font-semibold">°C</span>
+                              <span className="text-[10px] text-amber-600/80 font-bold">°C</span>
                             </div>
-                            <div className="bg-rose-50/30 border border-rose-100 p-4 rounded-xl flex flex-col gap-1 shadow-sm">
-                              <span className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">น้ำหนัก/ส่วนสูง</span>
-                              <strong className="text-sm text-rose-955 truncate font-extrabold">
+                            <div className="bg-gradient-to-br from-zinc-50/60 to-zinc-100/20 border border-zinc-200/40 p-4.5 rounded-2xl flex flex-col gap-1 shadow-sm">
+                              <span className="text-[10px] text-zinc-700 font-extrabold uppercase tracking-wider">น้ำหนัก/ส่วนสูง</span>
+                              <strong className="text-sm text-zinc-950 truncate font-extrabold">
                                 W: {visitDetails.screening?.bw || '-'} kg / H: {visitDetails.screening?.height || '-'} cm
                               </strong>
-                              <span className="text-[10px] text-rose-600 font-bold">
+                              <span className="text-[10px] text-zinc-600 font-bold">
                                 BMI: {visitDetails.screening?.bmi || '-'}
                               </span>
                             </div>
