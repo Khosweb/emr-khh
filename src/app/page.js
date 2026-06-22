@@ -797,35 +797,27 @@ export default function App() {
                                 <thead className="sticky top-0 z-10">
                                   <tr className="bg-gradient-to-r from-pink-500 to-pink-600 text-white border-b border-pink-500">
                                     <th className="p-3 font-bold">ICD-10</th>
-                                    <th className="p-3 font-bold">ชื่อโรค (Diagnosis Description)</th>
-                                    <th className="p-3 font-bold">ประเภทโรค</th>
-                                    <th className="p-3 font-bold">แพทย์ผู้วินิจฉัย</th>
                                   </tr>
                                 </thead>
                                 <tbody className="divide-y divide-rose-50">
-                                  {visitDetails.diagnoses && visitDetails.diagnoses.length > 0 ? (
-                                    visitDetails.diagnoses.map((diag, index) => (
-                                      <tr key={index} className="hover:bg-rose-50/20">
-                                        <td className="p-3 font-mono font-bold text-rose-600">{diag.icd10}</td>
-                                        <td className="p-3 text-rose-955 font-semibold">
-                                          <div>{diag.icd10_name}</div>
-                                          <div className="text-xs text-pink-600/70 mt-0.5 font-medium">{diag.icd10_tname}</div>
-                                        </td>
-                                        <td className="p-3">
-                                          <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                                            diag.diagtype_name && diag.diagtype_name.includes('PRINCIPLE') ? 'bg-rose-500/10 border border-rose-200 text-pink-600' : 'bg-zinc-100 text-zinc-500'
-                                          }`}>
-                                            {diag.diagtype_name || 'CO-MORBIDITY'}
-                                          </span>
-                                        </td>
-                                        <td className="p-3 text-zinc-600 font-medium">{diag.doctor_name || '-'}</td>
-                                      </tr>
-                                    ))
-                                  ) : (
-                                    <tr>
-                                      <td colSpan={4} className="p-4 text-center text-zinc-400">ไม่มีการระบุการวินิจฉัยโรค</td>
-                                    </tr>
-                                  )}
+                                  {(() => {
+                                    const filteredDiags = (visitDetails.diagnoses || []).filter(
+                                      diag => !/^[0-9]/.test(diag.icd10 || '')
+                                    );
+                                    if (filteredDiags.length > 0) {
+                                      return filteredDiags.map((diag, index) => (
+                                        <tr key={index} className="hover:bg-rose-50/20">
+                                          <td className="p-3 font-mono font-bold text-rose-600">{diag.icd10}</td>
+                                        </tr>
+                                      ));
+                                    } else {
+                                      return (
+                                        <tr>
+                                          <td className="p-4 text-center text-zinc-400">ไม่มีการระบุการวินิจฉัยโรค</td>
+                                        </tr>
+                                      );
+                                    }
+                                  })()}
                                 </tbody>
                               </table>
                             </div>

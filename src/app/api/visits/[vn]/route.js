@@ -278,6 +278,8 @@ export async function GET(request, { params }) {
         ORDER BY od.diagtype ASC, od.ovst_diag_id ASC
       `;
       diagnoses = await query(diagnosesSql, [hasAdmit ? targetAn : vn]);
+      // กรองรหัสหัตถการออก (เช่น รหัสที่ขึ้นต้นด้วยตัวเลข 9511, 9503, 9501)
+      diagnoses = diagnoses.filter(diag => !/^[0-9]/.test(diag.icd10 || ''));
     } catch (err) {
       console.warn('Failed to query diagnoses:', err.message);
       diagnoses = [];
