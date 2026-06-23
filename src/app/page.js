@@ -142,6 +142,16 @@ export default function App() {
 
   // Load session on mount
   useEffect(() => {
+    // Check if code query param exists (returned from Provider ID / Health ID OAuth)
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) {
+      // Clear code from URL bar so refreshes don't re-trigger authentication
+      window.history.replaceState({}, document.title, window.location.pathname);
+      handleProviderLogin(code);
+      return;
+    }
+
     const savedSession = localStorage.getItem('emr_session');
     if (savedSession) {
       try {
@@ -158,6 +168,32 @@ export default function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleProviderLogin = async (code) => {
+    setLoginError('');
+    setLoginLoading(true);
+    try {
+      const res = await fetch('/api/auth/provider-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || data.error || 'การเข้าสู่ระบบผ่าน Provider ID ล้มเหลว');
+      }
+
+      setSession(data);
+      localStorage.setItem('emr_session', JSON.stringify(data));
+    } catch (err) {
+      console.error('Provider ID login error:', err);
+      setLoginError(err.message || 'การเข้าสู่ระบบผ่าน Provider ID ล้มเหลว');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
 
 
   const handleLoginSubmit = async (e) => {
@@ -182,15 +218,17 @@ export default function App() {
     } catch (err) {
       // Fallback: หาก API ล็อกอินล้มเหลว (เช่น DB ออฟไลน์) ให้ยอมรับ demo / password หรือ admin
       console.warn('Login API offline, falling back to mock authentication.');
-      if (loginForm.username === 'demo' || loginForm.username === 'admin') {
+      const isDemo = loginForm.username === 'demo' || loginForm.username === 'D9999';
+      const isAdmin = loginForm.username === 'admin' || loginForm.username === 'A0001';
+      if (isDemo || isAdmin) {
         const mockData = {
           success: true,
           message: 'Login successful (Mock)',
           user: {
-            username: loginForm.username,
-            name: loginForm.username === 'demo' ? 'นพ. สมเกียรติ รักดี (แพทย์ทดสอบ)' : 'พญ. วริศรา ใจงาม (ผู้ดูแลระบบ)',
-            doctorCode: loginForm.username === 'demo' ? 'D9999' : 'A0001',
-            group: loginForm.username === 'demo' ? 'PHYSICIAN' : 'ADMINISTRATOR',
+            username: isDemo ? 'demo' : 'admin',
+            name: isDemo ? 'นพ. สมเกียรติ รักดี (แพทย์ทดสอบ)' : 'พญ. วริศรา ใจงาม (ผู้ดูแลระบบ)',
+            doctorCode: isDemo ? 'D9999' : 'A0001',
+            group: isDemo ? 'PHYSICIAN' : 'ADMINISTRATOR',
             department: 'OPD CARDIOVASCULAR'
           },
           token: 'mock-token-12345',
@@ -357,10 +395,10 @@ export default function App() {
 
           <form onSubmit={handleLoginSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-rose-800/80 tracking-wider uppercase">Username</label>
+              <label className="text-sm font-bold text-rose-800/80 tracking-wider uppercase">Username / Provider ID</label>
               <input
                 type="text"
-                placeholder="ระบุรหัสเข้าใช้งาน"
+                placeholder="ระบุรหัสเข้าใช้งาน หรือ Provider ID"
                 required
                 className="w-full bg-white/50 border border-rose-100/80 rounded-xl px-4 py-3.5 text-base text-rose-955 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500 transition duration-300"
                 value={loginForm.username}
@@ -397,6 +435,23 @@ export default function App() {
                 'เข้าสู่ระบบ EMR'
               )}
             </button>
+
+            <div className="relative flex py-1 items-center">
+              <div className="flex-grow border-t border-rose-100/60"></div>
+              <span className="flex-shrink mx-4 text-xs font-bold text-rose-450 uppercase tracking-wider">หรือ</span>
+              <div className="flex-grow border-t border-rose-100/60"></div>
+            </div>
+
+            <a
+              href="/api/auth/provider-redirect"
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-3.5 rounded-xl text-base font-bold text-center shadow-lg shadow-emerald-100/80 hover:shadow-xl hover:shadow-emerald-200/80 transition duration-200 flex items-center justify-center gap-2 cursor-pointer no-underline decoration-transparent"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              เข้าสู่ระบบด้วย Provider ID / Health ID
+            </a>
+
           </form>
 
         </div>
