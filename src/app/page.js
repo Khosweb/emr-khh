@@ -276,10 +276,18 @@ export default function App() {
          if (!res.ok) throw new Error(result.error || 'ไม่พบผู้ป่วยจาก CID');
          hn = result.hn; // Get HN
        } catch (err) {
-         console.error('CID Search Error:', err);
-         setSearchError(err.message);
-         setSearchLoading(false);
-         return;
+         console.error('CID API failed, searching in Mock Data:', err);
+         // Try to find HN from mock data using CID
+         const foundHn = Object.keys(clientMockPatients).find(h => 
+            clientMockPatients[h].patient.cid.replace(/-/g, '') === hn
+         );
+         if (foundHn) {
+            hn = foundHn;
+         } else {
+            setSearchError('ไม่พบข้อมูลผู้ป่วย');
+            setSearchLoading(false);
+            return;
+         }
        }
     } else {
        // Pad with leading zeros to 9 digits (HN)
