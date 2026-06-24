@@ -255,19 +255,37 @@ export default function App() {
     localStorage.removeItem('emr_vn');
   };
 
-  async function handleSearchPatient(hnToSearch, preferredVn) {
-    const rawHn = hnToSearch || searchHn;
-    if (!rawHn.trim()) return;
+  async function handleSearchPatient(inputToSearch, preferredVn) {
+    const rawInput = inputToSearch || searchHn;
+    if (!rawInput.trim()) return;
 
-    // Pad with leading zeros to 9 digits (e.g. 63108 -> 000063108)
-    const hn = rawHn.trim().padStart(9, '0');
-    setSearchHn(hn);
-
+    let hn = rawInput.trim();
     setSearchLoading(true);
     setSearchError('');
     setPatientData(null);
     setVisitDetails(null);
     setSelectedVn('');
+
+    // Check if input is CID (13 digits)
+    const isCid = /^\d{13}$/.test(hn);
+    
+    if (isCid) {
+       try {
+         const res = await fetch(`/api/patients/search?cid=${hn}`);
+         const result = await res.json();
+         if (!res.ok) throw new Error(result.error || 'ไม่พบผู้ป่วยจาก CID');
+         hn = result.hn; // Get HN
+       } catch (err) {
+         console.error('CID Search Error:', err);
+         setSearchError(err.message);
+         setSearchLoading(false);
+         return;
+       }
+    } else {
+       // Pad with leading zeros to 9 digits (HN)
+       hn = hn.padStart(9, '0');
+    }
+    setSearchHn(hn);
 
     try {
       const res = await fetch(`/api/patients/${hn}`);
@@ -511,7 +529,7 @@ export default function App() {
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="ค้นหา HN (เช่น 001234567)"
+                placeholder="ค้นหา HN หรือ เลขบัตรประชาชน (13 หลัก)"
                 className="w-full bg-white border border-rose-200/50 rounded-xl pl-11 pr-3 py-2 text-base text-zinc-800 placeholder-rose-300 focus:outline-none focus:ring-4 focus:ring-rose-500/10 focus:border-rose-400 transition duration-200 font-medium"
                 value={searchHn}
                 onChange={(e) => setSearchHn(e.target.value)}
